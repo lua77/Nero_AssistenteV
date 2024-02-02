@@ -1,7 +1,7 @@
 import speech_recognition as sr #reconhecimento de voz
 import pyttsx3 #texto para fala
 from datetime import datetime
-from comandos_web import yt, wiki
+from comandos_web import yt, wiki, goo
 from comandos_off import hr
 from random import choice
 import os
@@ -19,7 +19,6 @@ def falar(texto):
 def cumprimetar():
     # meus cumprimentos
     hour = datetime.now().hour
-    now = datetime.now()
 
     if (hour >= 6) and (hour < 12):
         falar(f'Bom dia senhor')
@@ -33,7 +32,7 @@ def cumprimetar():
         falar(f'Boa noite senhor')
         periodo = 'noite'
 
-    elif (hour >= 24) and (hour < 6):
+    elif (hour >= 0) and (hour < 6):
         falar('Olá senhor, sem sono?')
         periodo = 'madrugada'
 
@@ -84,6 +83,12 @@ def reconhecimento():
         falar(f'De acordo com a wikipedia: {resposta}')
         falar('Por praticidade, estarei escrevendo os resultados senhor')
         print(resposta)
+
+    elif 'pesquisar no google' in comando:
+        falar('O que deseja pesquisar?')
+        pesquisar = captura_comando()
+        pesquisar = pesquisar.lower()
+        goo(pesquisar)
 
     elif 'horas' in comando or 'horario' in comando:
         hr_ = hr()

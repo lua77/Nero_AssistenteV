@@ -11,3 +11,6 @@ def wiki(pesquisar):
 def yt(pesquisar):
     kit.playonyt(pesquisar)
 
+
+def goo(pesquisar):
+    kit.search(pesquisar)
