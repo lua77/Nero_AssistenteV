@@ -1,6 +1,7 @@
 import speech_recognition as sr #reconhecimento de voz
 import pyttsx3 #texto para fala
 from datetime import datetime
+from comandos_web import yt, wiki
 from random import choice
 import os
 
@@ -86,7 +87,7 @@ if __name__ == '__main__':
         elif 'wikipedia' in comando:
             falar('O que quer que eu procure na wiki?')
             pesquisar = captura_comando().lower()
-            resposta = wikipesquisa(pesquisar)
+            resposta = wiki(pesquisar)
             falar(f'De acordo com a wikipedia: {resposta}')
             falar('Por praticidade, estarei escrevendo os resultados senhor')
             print(resposta)
