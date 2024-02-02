@@ -1,5 +1,7 @@
-import speech_recognition as sr
-import pyttsx3
+import speech_recognition as sr #reconhecimento de voz
+import pyttsx3 #texto para fala
+from random import choice
+import os
 
 machine = pyttsx3.init()
 r = sr.Recognizer()
