@@ -36,7 +36,7 @@ def cumprimetar():
         falar('Olá senhor, sem sono?')
         periodo = 'madrugada'
 
-    falar(f'Eu sou o Nero, como posso te ajudar nesta {periodo}?')
+    falar(f'Como posso te ajudar nesta {periodo}?')
 
 
 def captura_comando():
@@ -76,17 +76,21 @@ if __name__ == '__main__':
                 falar('Tenha uma boa noite senhor!')
             else:
                 falar('Tenha um bom dia, se cuide!')
-                break
+                exit()
 
         elif 'youtube' in comando:
             falar('O que vamos ver no youtube?')
-            pesquisar = captura_comando().lower()
+            pesquisar = captura_comando()
+            pesquisar = pesquisar.lower()
+            print(pesquisar)
             yt(pesquisar)
             falar('Abrindo o vídeo...')
 
-        elif 'wikipedia' in comando:
+        elif 'wikipédia' in comando or 'wikipedia' in comando:
             falar('O que quer que eu procure na wiki?')
-            pesquisar = captura_comando().lower()
+            pesquisar = captura_comando()
+            pesquisar = pesquisar.lower()
+            pesquisar = pesquisar('pesquise por ', '')
             resposta = wiki(pesquisar)
             falar(f'De acordo com a wikipedia: {resposta}')
             falar('Por praticidade, estarei escrevendo os resultados senhor')
