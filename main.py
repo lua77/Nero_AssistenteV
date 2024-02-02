@@ -2,6 +2,7 @@ import speech_recognition as sr #reconhecimento de voz
 import pyttsx3 #texto para fala
 from datetime import datetime
 from comandos_web import yt, wiki
+from comandos_off import hr
 from random import choice
 import os
 
@@ -61,6 +62,36 @@ def captura_comando():
 
             return None
 
+
+def reconhecimento():
+
+    comando = captura_comando().lower()
+
+    if 'youtube' in comando:
+        falar('O que vamos ver no youtube?')
+        pesquisar = captura_comando()
+        pesquisar = pesquisar.lower()
+        print(pesquisar)
+        yt(pesquisar)
+        falar('Abrindo o vídeo...')
+
+    elif 'wikipédia' in comando or 'wikipedia' in comando:
+        falar('O que quer que eu procure na wiki?')
+        pesquisar = captura_comando()
+        pesquisar = pesquisar.lower()
+        pesquisar = pesquisar.replace('pesquise por ', '')
+        resposta = wiki(pesquisar)
+        falar(f'De acordo com a wikipedia: {resposta}')
+        falar('Por praticidade, estarei escrevendo os resultados senhor')
+        print(resposta)
+
+    elif 'horas' in comando or 'horario' in comando:
+        hr_ = hr()
+        falar(f'Agora são exatamente {hr_}')
+
+    pass
+
+
 if __name__ == '__main__':
 
     while True:
@@ -68,32 +99,15 @@ if __name__ == '__main__':
 
         if 'nero' in comando:
             cumprimetar()
+            reconhecimento()
 
-        if 'encerrar' in comando or 'parar' in comando:
+        elif 'encerrar' in comando or 'parar' in comando:
 
             hour = datetime.now().hour
             if hour >= 18 or hour < 6:
                 falar('Tenha uma boa noite senhor!')
+                exit()
             else:
                 falar('Tenha um bom dia, se cuide!')
                 exit()
 
-        elif 'youtube' in comando:
-            falar('O que vamos ver no youtube?')
-            pesquisar = captura_comando()
-            pesquisar = pesquisar.lower()
-            print(pesquisar)
-            yt(pesquisar)
-            falar('Abrindo o vídeo...')
-
-        elif 'wikipédia' in comando or 'wikipedia' in comando:
-            falar('O que quer que eu procure na wiki?')
-            pesquisar = captura_comando()
-            pesquisar = pesquisar.lower()
-            pesquisar = pesquisar('pesquise por ', '')
-            resposta = wiki(pesquisar)
-            falar(f'De acordo com a wikipedia: {resposta}')
-            falar('Por praticidade, estarei escrevendo os resultados senhor')
-            print(resposta)
-
-        pass
